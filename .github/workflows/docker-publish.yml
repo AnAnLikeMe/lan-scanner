@@ -29,11 +29,14 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and push
-        uses: docker/build-push-action@v6   # 这里升级到 v6
+        uses: docker/build-push-action@v6
         with:
-          context: .
-          platforms: ${{ matrix.platform }}
-          push: true
-          tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/lan-scanner:latest
-            ${{ secrets.DOCKERHUB_USERNAME }}/lan-scanner:${{ github.sha }}
+         context: .
+         platforms: linux/amd64,linux/arm64   # 合并为一行，不用 matrix
+         push: true
+         tags: |
+           ccion/lan-scanner:latest
+           ccion/lan-scanner:${{ github.sha }}
+           ${{ secrets.DOCKERHUB_USERNAME }}/lan-scanner:latest
+           ${{ secrets.DOCKERHUB_USERNAME }}/lan-scanner:${{ github.sha }}
+          
