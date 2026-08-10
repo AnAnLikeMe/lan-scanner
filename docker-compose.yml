@@ -1,14 +1,12 @@
 version: '3.9'
-
 services:
   scanner:
-    build: .
+    image: ccion/lan-scanner:latest   # 直接从 Docker Hub 拉取
     container_name: lan-scanner
-    network_mode: host          # 必须使用 host 模式才能扫描局域网
-    privileged: false
+    network_mode: host
     cap_add:
       - NET_ADMIN
       - NET_RAW
     volumes:
-      - ./data:/data            # 持久化备注数据库
+      - ./data:/data
     restart: unless-stopped
