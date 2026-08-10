@@ -60,7 +60,11 @@ def run_nmap_scan(subnet):
         for idx, ip in enumerate(ips):
             scanning_status["progress"] = f"扫描 {ip} ({idx+1}/{total}) 的开放端口..."
             # 扫描常见端口 (可自行增减)
-            port_cmd = ["nmap", "-sT", "-T4", "-p", "21,22,23,25,53,80,110,135,139,143,443,445,993,995,1433,1521,3306,3389,5432,5900,6379,8080,8443,9090,9200,27017", ip]
+            import os  # 确保文件顶部有这行
+
+            # 在函数 run_nmap_scan 内部，替换原来那行：
+            scan_ports = os.environ.get('SCAN_PORTS', '21,22,23,25,53,80,110,135,139,143,443,445,993,995,1433,1521,3306,3389,5432,5900,6379,8080,8443,8888,9000,9090,9200,10000,18000,27017')
+            port_cmd = ["nmap", "-sT", "-T4", "-p", scan_ports, ip]
             try:
                 port_result = subprocess.run(port_cmd, capture_output=True, text=True, timeout=30)
                 # 解析开放端口
