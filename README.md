@@ -8,3 +8,5 @@
 - **点击跳转**：点击端口号直接在新标签页打开对应服务
 - **备注持久化**：可为任意 IP+端口 添加备注，数据保存在 SQLite 中，重启不丢失
 - **开箱即用**：基于 Docker Compose，一键构建启动
+
+仅适用于 Linux 服务器或群晖等 NAS 环境，Windows/Mac 的 Docker Desktop 需要额外配置 host 网络
