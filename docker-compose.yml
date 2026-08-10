@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  scanner:
+    build: .
+    container_name: lan-scanner
+    network_mode: host          # 关键：使用宿主机网络才能扫描局域网
+    privileged: false           # 不需要完全特权，但需要cap
+    cap_add:
+      - NET_ADMIN               # nmap发送包所需
+      - NET_RAW
+    volumes:
+      - ./data:/data            # 持久化备注数据库
+    restart: unless-stopped
