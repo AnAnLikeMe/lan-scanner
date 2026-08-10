@@ -13,5 +13,5 @@
 
 ### 1. 克隆仓库
 bash
-git clone [你的仓库地址]](https://github.com/AnAnLikeMe/lan-scanner)
+git clone (https://github.com/AnAnLikeMe/lan-scanner)
 cd lan-scanner
